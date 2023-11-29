@@ -29,13 +29,13 @@ const items = [
 let movesCount = 0;
 let winCount = 0;
 
-/// Fungsi untuk menghitung jumlah gerakan
+/// menambah move dengan logika jika 2 kartu dibuka (sama atau tidak) akan bertambah 1 move
 const movesCounter = () => {
   movesCount += 1;
   moves.innerHTML = `<span style="color: #0C356A;">Gerakan:</span>${movesCount}`;
 };
 
-/// Fungsi untuk menghasilkan urutan acak kartu permain
+/// 4x4 grid dan mengacak urutan kartu
 const generateRandom = (size = 4) => {
   let tempArray = [...items];
   let cardValues = [];
@@ -48,7 +48,7 @@ const generateRandom = (size = 4) => {
   return cardValues;
 };
 
-/// Fungsi untuk menghasilkan matriks kartu permain
+/// matriks kartu dan logika game
 const matrixGenerator = (cardValues, size = 4) => {
   gameContainer.innerHTML = "";
   cardValues = [...cardValues, ...cardValues];
@@ -115,14 +115,14 @@ startButton.addEventListener("click", () => {
   initializer();
 });
 
-/// Event listener untuk menghentikan permainan
+/// event listener button kembali untuk menghentikan permainan
 stopButton.addEventListener("click", () => {
   controls.classList.remove("hide");
   stopButton.classList.add("hide");
   startButton.classList.remove("hide");
 });
 
-/// Fungsi untuk menghentikan permainan dan menampilkan hasil
+/// ketika menang/semua kartu telah tertebak
 function stopGame() {
   controls.classList.remove("hide");
   stopButton.classList.add("hide");
@@ -131,7 +131,7 @@ function stopGame() {
               <h4 style="color: #0C356A;">Total Gerakan: ${movesCount}</h4>`;
 }
 
-/// Fungsi untuk menginisialisasi permainan
+/// awal permainan semuanya netral
 const initializer = () => {
   result.innerText = "";
   winCount = 0;
